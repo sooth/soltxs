@@ -5,7 +5,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="soltxs",
-    version="1.0.0",
+    version="1.0.1",
     author="Quick Vectors",
     author_email="felipe@qvecs.com",
     description="Solana transaction normalizer, parser, and resolver.",
