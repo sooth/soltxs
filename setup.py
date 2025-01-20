@@ -5,7 +5,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="soltxs",
-    version="1.0.1",
+    version="1.0.2",
     author="Quick Vectors",
     author_email="felipe@qvecs.com",
     description="Solana transaction normalizer, parser, and resolver.",
@@ -17,7 +17,6 @@ setup(
         "Source Code": "https://github.com/qvecs/soltxs",
     },
     python_requires=">=3.10",
-    include_package_data=True,
     packages=["soltxs"],
     classifiers=[
         "Programming Language :: Python :: 3",
