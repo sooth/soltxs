@@ -1,11 +1,11 @@
-from setuptools import setup
+from setuptools import find_packages, setup
 
 with open("README.md", encoding="utf-8") as f:
     long_desc = f.read()
 
 setup(
     name="soltxs",
-    version="1.0.2",
+    version="1.0.3",
     author="Quick Vectors",
     author_email="felipe@qvecs.com",
     description="Solana transaction normalizer, parser, and resolver.",
@@ -17,7 +17,7 @@ setup(
         "Source Code": "https://github.com/qvecs/soltxs",
     },
     python_requires=">=3.10",
-    packages=["soltxs"],
+    packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "Programming Language :: C",
