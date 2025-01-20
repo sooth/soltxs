@@ -1,0 +1,14 @@
+# Environment
+.DS_Store
+.venv
+.secrets
+
+# Python
+__pycache__
+*.egg-info
+.pytest_cache
+build
+
+# Misc
+test.py
+
