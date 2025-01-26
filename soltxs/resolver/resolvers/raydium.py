@@ -7,6 +7,7 @@ from soltxs.resolver.models import Resolve, Resolver
 
 @dataclass(slots=True)
 class Raydium(Resolve):
+    type: str
     who: str
     from_token: str
     from_amount: int
@@ -20,7 +21,17 @@ class _RaydiumResolveer(Resolver):
         instrs = [i for i in instructions if isinstance(i, parser.parsers.raydiumAMM.Swap)]
         if len(instrs) == 1:
             instr = instrs[0]
+            raydium_type = "unknown"
+            WSOL_MINT = "So11111111111111111111111111111111111111112"
+            SOL_MINT = "11111111111111111111111111111111"
+
+            if instr.from_token in [WSOL_MINT, SOL_MINT]:
+                raydium_type = "buy"
+            elif instr.to_token in [WSOL_MINT, SOL_MINT]:
+                raydium_type = "sell"
+
             return Raydium(
+                type=raydium_type,
                 who=instr.who,
                 from_token=instr.from_token,
                 from_amount=instr.from_token_amount / 10**instr.from_token_decimals,
