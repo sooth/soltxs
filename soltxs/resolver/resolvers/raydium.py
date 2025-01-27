@@ -4,6 +4,9 @@ from typing import List, Optional
 from soltxs import parser
 from soltxs.resolver.models import Resolve, Resolver
 
+WSOL_MINT = "So11111111111111111111111111111111111111112"
+SOL_MINT = "11111111111111111111111111111111"
+
 
 @dataclass(slots=True)
 class Raydium(Resolve):
@@ -16,18 +19,16 @@ class Raydium(Resolve):
     minimum_amount_out: int
 
 
-class _RaydiumResolveer(Resolver):
+class _RaydiumResolver(Resolver):
     def resolve(self, instructions: List[parser.models.ParsedInstruction]) -> Optional[Resolve]:
         instrs = [i for i in instructions if isinstance(i, parser.parsers.raydiumAMM.Swap)]
         if len(instrs) == 1:
             instr = instrs[0]
-            raydium_type = "unknown"
-            WSOL_MINT = "So11111111111111111111111111111111111111112"
-            SOL_MINT = "11111111111111111111111111111111"
 
-            if instr.from_token in [WSOL_MINT, SOL_MINT]:
+            raydium_type = "swap"
+            if instr.from_token in {WSOL_MINT, SOL_MINT}:
                 raydium_type = "buy"
-            elif instr.to_token in [WSOL_MINT, SOL_MINT]:
+            elif instr.to_token in {WSOL_MINT, SOL_MINT}:
                 raydium_type = "sell"
 
             return Raydium(
@@ -41,4 +42,4 @@ class _RaydiumResolveer(Resolver):
             )
 
 
-RaydiumResolver = _RaydiumResolveer()
+RaydiumResolver = _RaydiumResolver()

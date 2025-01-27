@@ -39,7 +39,7 @@ def token_balance(tb: dict) -> TokenBalance:
         accountIndex=tb["accountIndex"],
         mint=tb["mint"],
         owner=tb["owner"],
-        programId=tb["programId"],
+        programId=tb.get("programId"),
         uiTokenAmount=TokenAmount(
             amount=tb["uiTokenAmount"]["amount"],
             decimals=tb["uiTokenAmount"]["decimals"],

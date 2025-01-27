@@ -5,7 +5,7 @@ from typing import List, Optional
 from soltxs import parser
 
 
-@dataclass
+@dataclass(slots=True)
 class Resolve:
     pass
 

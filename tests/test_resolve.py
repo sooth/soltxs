@@ -40,6 +40,7 @@ def test_resolve_raydium_swap(load_data):
 
     assert getattr(outcome, "who", None) is not None
     assert getattr(outcome, "minimum_amount_out", 0) > 0
+    assert getattr(outcome, "type", None) == "buy"
 
 
 def test_resolve_no_match():

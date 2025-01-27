@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List
 
 from soltxs import parser
 from soltxs.resolver.models import Resolver, Resolve
