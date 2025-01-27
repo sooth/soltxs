@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Union
 
 from soltxs.parser.parsers.tokenProgram import TokenProgramParser
-from soltxs.normalizer.models import Instruction, Transaction, Message, Meta, LoadedAddresses
+from soltxs.normalizer.models import Instruction, Transaction
 from soltxs.parser.models import ParsedInstruction, Program
 
 WSOL_MINT = "So11111111111111111111111111111111111111112"
