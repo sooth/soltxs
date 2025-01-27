@@ -67,6 +67,7 @@ prsd_tx = soltxs.parse(norm_tx)
 
 rsvl_tx = soltxs.resolve(prsd_tx)
 # Raydium(
+#     type=...,
 #     who=...,
 #     from_token=...,
 #     from_amount=...,
