@@ -38,7 +38,7 @@ class TokenBalance:
     accountIndex: int
     mint: str
     owner: str
-    programId: str
+    programId: Optional[str]
     uiTokenAmount: TokenAmount
 
 
