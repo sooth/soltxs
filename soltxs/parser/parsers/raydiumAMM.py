@@ -4,9 +4,9 @@ from typing import Union
 from soltxs.parser.parsers.tokenProgram import TokenProgramParser
 from soltxs.normalizer.models import Instruction, Transaction
 from soltxs.parser.models import ParsedInstruction, Program
+from soltxs.parser.parsers.constants import INSTR_SWAP
 
-WSOL_MINT = "So11111111111111111111111111111111111111112"
-SOL_DECIMALS = 9
+from soltxs.constants import WSOL_MINT, SOL_DECIMALS
 
 
 @dataclass(slots=True)
@@ -88,7 +88,7 @@ class _RaydiumAMMParser(Program[ParsedInstructions]):
         return Swap(
             program_id=self.program_id,
             program_name=self.program_name,
-            instruction_name="Swap",
+            instruction_name=INSTR_SWAP,
             who=who,
             from_token=from_token,
             from_token_amount=amount_in,

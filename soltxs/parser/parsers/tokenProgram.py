@@ -5,6 +5,12 @@ import qbase58 as base58
 
 from soltxs.normalizer.models import Instruction, Transaction
 from soltxs.parser.models import ParsedInstruction, Program
+from soltxs.parser.parsers.constants import (
+    INSTR_INITIALIZE_ACCOUNT,
+    INSTR_TRANSFER,
+    INSTR_TRANSFER_CHECKED,
+    INSTR_UNKNOWN,
+)
 
 
 @dataclass(slots=True)
@@ -86,7 +92,7 @@ class _TokenProgramParser(Program[ParsedInstructions]):
         return InitAccount(
             program_id=self.program_id,
             program_name=self.program_name,
-            instruction_name="InitializeAccount",
+            instruction_name=INSTR_INITIALIZE_ACCOUNT,
             account=account,
             mint=mint,
             owner=owner,
@@ -110,7 +116,7 @@ class _TokenProgramParser(Program[ParsedInstructions]):
         return Transfer(
             program_id=self.program_id,
             program_name=self.program_name,
-            instruction_name="Transfer",
+            instruction_name=INSTR_TRANSFER_CHECKED,
             from_account=tx.all_accounts[accounts[0]],
             to=tx.all_accounts[accounts[1]],
             amount=int.from_bytes(decoded_data[1:9], byteorder="little", signed=False),
@@ -150,7 +156,7 @@ class _TokenProgramParser(Program[ParsedInstructions]):
         return Unknown(
             program_id=self.program_id,
             program_name=self.program_name,
-            instruction_name="Unknown",
+            instruction_name=INSTR_UNKNOWN,
         )
 
 

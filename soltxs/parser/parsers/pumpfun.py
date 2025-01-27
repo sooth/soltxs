@@ -7,9 +7,12 @@ import qborsh
 
 from soltxs.normalizer.models import Instruction, Transaction
 from soltxs.parser.models import ParsedInstruction, Program
-
-WSOL_MINT = "So11111111111111111111111111111111111111112"
-SOL_DECIMALS = 9
+from soltxs.parser.parsers.constants import (
+    INSTR_BUY,
+    INSTR_SELL,
+    INSTR_CREATE,
+)
+from soltxs.constants import WSOL_MINT, SOL_DECIMALS
 
 
 @dataclass(slots=True)
@@ -107,7 +110,7 @@ class _PumpFunParser(Program[ParsedInstructions]):
         return Buy(
             program_id=self.program_id,
             program_name=self.program_name,
-            instruction_name="Buy",
+            instruction_name=INSTR_BUY,
             who=who,
             from_token=from_token,
             from_token_decimals=from_decimals,
@@ -137,7 +140,7 @@ class _PumpFunParser(Program[ParsedInstructions]):
         return Sell(
             program_id=self.program_id,
             program_name=self.program_name,
-            instruction_name="Sell",
+            instruction_name=INSTR_SELL,
             who=who,
             from_token=from_token,
             from_token_decimals=from_decimals,
@@ -164,7 +167,7 @@ class _PumpFunParser(Program[ParsedInstructions]):
         return Create(
             program_id=self.program_id,
             program_name=self.program_name,
-            instruction_name="Create",
+            instruction_name=INSTR_CREATE,
             who=who,
             mint=tx.all_accounts[instr.accounts[0]] if len(instr.accounts) > 0 else None,
             mint_authority=tx.all_accounts[instr.accounts[1]] if len(instr.accounts) > 1 else None,

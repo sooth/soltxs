@@ -1,6 +1,6 @@
 from soltxs import normalize, parse, resolve
 from soltxs.resolver.models import Resolve
-
+from soltxs.constants import BUY, SELL
 
 def test_resolve_pumpfun_buy(load_data):
     """
@@ -12,7 +12,7 @@ def test_resolve_pumpfun_buy(load_data):
     outcome = resolve(parsed)
 
     assert isinstance(outcome, Resolve)
-    assert getattr(outcome, "type", None) == "Buy"
+    assert getattr(outcome, "type", None) == BUY
     assert getattr(outcome, "from_amount", 0) > 0
 
 
@@ -25,7 +25,7 @@ def test_resolve_pumpfun_sell(load_data):
     parsed = parse(tx_obj)
     outcome = resolve(parsed)
 
-    assert getattr(outcome, "type", None) == "Sell"
+    assert getattr(outcome, "type", None) == SELL
     assert getattr(outcome, "to_amount", 0) > 0
 
 
@@ -40,7 +40,7 @@ def test_resolve_raydium_swap(load_data):
 
     assert getattr(outcome, "who", None) is not None
     assert getattr(outcome, "minimum_amount_out", 0) > 0
-    assert getattr(outcome, "type", None) == "buy"
+    assert getattr(outcome, "type", None) == BUY
 
 
 def test_resolve_no_match():

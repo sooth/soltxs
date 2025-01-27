@@ -5,6 +5,10 @@ import qborsh
 
 from soltxs.normalizer.models import Instruction, Transaction
 from soltxs.parser.models import ParsedInstruction, Program
+from soltxs.parser.parsers.constants import (
+    INSTR_TRANSFER_SOL,
+    INSTR_CREATE_ACCOUNT_WITH_SEED,
+)
 
 
 @dataclass(slots=True)
@@ -98,7 +102,7 @@ class _SystemProgramParser(Program[ParsedInstructions]):
         return Transfer(
             program_id=self.program_id,
             program_name=self.program_name,
-            instruction_name="Transfer",
+            instruction_name=INSTR_TRANSFER_SOL,
             from_account=from_account,
             to_account=to_account,
             lamports=int(data["lamports"]),
@@ -121,7 +125,7 @@ class _SystemProgramParser(Program[ParsedInstructions]):
         return createAccount(
             program_id=self.program_id,
             program_name=self.program_name,
-            instruction_name="CreateAccountWithSeed",
+            instruction_name=INSTR_CREATE_ACCOUNT_WITH_SEED,
             who=who,
             new_account=new_account,
             base=parsed["base"],

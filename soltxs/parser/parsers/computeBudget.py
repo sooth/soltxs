@@ -5,6 +5,10 @@ from typing import Union
 
 from soltxs.normalizer.models import Transaction
 from soltxs.parser.models import ParsedInstruction, Program
+from soltxs.parser.parsers.constants import (
+    INSTR_SET_COMPUTE_UNIT_LIMIT,
+    INSTR_SET_COMPUTE_UNIT_PRICE,
+)
 
 
 @dataclass(slots=True)
@@ -44,7 +48,7 @@ class _ComputeBudgetParser(Program[ParsedInstructions]):
         return SetComputeUnitLimit(
             program_id=self.program_id,
             program_name=self.program_name,
-            instruction_name="SetComputeUnitLimit",
+            instruction_name=INSTR_SET_COMPUTE_UNIT_PRICE,
             compute_unit_limit=int.from_bytes(decoded_data[1:5], byteorder="little", signed=False),
         )
 

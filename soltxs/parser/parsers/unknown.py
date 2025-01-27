@@ -3,6 +3,7 @@ from typing import Union
 
 from soltxs.normalizer.models import Transaction
 from soltxs.parser.models import ParsedInstruction, Program
+from soltxs.parser.parsers.constants import INSTR_UNKNOWN
 
 
 @dataclass(slots=True)
@@ -30,7 +31,7 @@ class _UnknownParser(Program):
         return Unknown(
             program_id=self.program_id,
             program_name=self.program_name,
-            instruction_name="Unknown",
+            instruction_name=INSTR_UNKNOWN,
             instruction_index=instruction_index,
         )
 
